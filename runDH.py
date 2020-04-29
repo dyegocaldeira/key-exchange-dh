@@ -3,13 +3,14 @@
 
 from dh import DH
 from prime import Prime
+import random
 
 if __name__ == '__main__':
 
     message = "Mensagem secreta?!"
 
-    c_private = 199
-    j_private = 157
+    c_private = random.randrange(1, 2048)
+    j_private = random.randrange(1, 2048)
 
     prime = Prime()
     prime.createPrimeNumbers()
