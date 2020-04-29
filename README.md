@@ -3,6 +3,8 @@ Algorithm created to exemplify the exchange of keys using the Diffie Hellman alg
 
 Requirements:
 
+`Ubuntu`
+
 `Python 2.7`
 
 `simple-crypt`
