@@ -43,15 +43,12 @@ class DH(object):
 
         fullKey = partialKey**self.privateKey
         fullKey = fullKey % self.publicKey1
+        
         self.fullKey = fullKey
-
-        return fullKey
 
     def encryptMessage(self, message):
 
-        encryptedMessage = encrypt(str(self.fullKey), message)
-
-        return encryptedMessage
+        return encrypt(str(self.fullKey), message)
 
     def decryptMessage(self, encryptedMessage):
 
