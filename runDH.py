@@ -15,26 +15,29 @@ if __name__ == '__main__':
     prime = Prime()
     prime.createPrimeNumbers()
 
+    print('[+] Private Key Carlos: ' + str(c_private))
+    print('[+] Private Key Jose: ' + str(j_private))
+
     print('[+] Public key 1: ' + str(prime.publicKey1))
     print('[+] Public key 2: ' + str(prime.publicKey2))
 
-    Sadat = DH(c_private, prime.publicKey1, prime.publicKey2)
-    Michael = DH(j_private, prime.publicKey1, prime.publicKey2)
+    Carlos = DH(c_private, prime.publicKey1, prime.publicKey2)
+    Jose = DH(j_private, prime.publicKey1, prime.publicKey2)
 
-    partial_key_sadat = Sadat.generatePartialKey()
-    partial_key_michael = Michael.generatePartialKey()
+    partial_key_carlos = Carlos.generatePartialKey()
+    partial_key_jose = Jose.generatePartialKey()
 
-    print('[+] partial key Carlos: ' + str(partial_key_sadat))
-    print('[+] partial key Jose: ' + str(partial_key_michael))
+    print('[+] partial key Carlos: ' + str(partial_key_carlos))
+    print('[+] partial key Jose: ' + str(partial_key_jose))
 
-    full_key_sadat = Sadat.generateFullKey(partial_key_michael)
-    full_key_michael = Michael.generateFullKey(partial_key_sadat)
+    Carlos.generateFullKey(partial_key_jose)
+    Jose.generateFullKey(partial_key_carlos)
     
-    print('[+] key Carlos: ' + str(full_key_sadat))
-    print('[+] key Jose: ' + str(full_key_michael))
+    print('[+] key Carlos: ' + str(Carlos.fullKey))
+    print('[+] key Jose: ' + str(Jose.fullKey))
 
     print('[+] Mensagem enviada por Carlos: ' + message)
-    print('[+] Mensagem recebida por José encriptada por Carlos: ' + Sadat.encryptMessage(message))
+    print('[+] Mensagem recebida por José encriptada por Carlos: ' + Carlos.encryptMessage(message))
 
-    msg_encrypted = Sadat.encryptMessage(message)
-    print('[+] Mensagem recebida decriptada por Jose: ' + Michael.decryptMessage(msg_encrypted))
+    msg_encrypted = Carlos.encryptMessage(message)
+    print('[+] Mensagem recebida decriptada por Jose: ' + Jose.decryptMessage(msg_encrypted))
